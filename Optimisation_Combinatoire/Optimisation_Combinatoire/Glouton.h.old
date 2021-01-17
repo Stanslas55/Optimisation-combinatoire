@@ -1,0 +1,25 @@
+#pragma once
+
+#include <vector>
+#include <string>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+class Glouton
+{ 
+	public:
+		Glouton();
+		void parseFichier(string filename);
+		size_t gloton();
+		bool* glotona();		
+		bool* goltonr();
+		~Glouton();
+
+	public:
+		size_t nb_capteurs, nb_cibles;
+		size_t* cout_capteur;
+		vector <size_t> *cibles, *capteurs;
+};
+

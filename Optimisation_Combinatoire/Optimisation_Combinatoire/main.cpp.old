@@ -1,0 +1,49 @@
+#include "Glouton.h"
+#include "Genetique.h"
+#include <chrono>
+
+
+int main()
+{   
+	string filename = "Instances/inst41.txt";
+	// Pour le Genetique :  
+	srand(time(NULL));
+	//size_t taille = POP_SIZE;
+	Glouton g;
+	g.parseFichier("Instances/inst41.txt");
+	bool* test = g.glotona();
+	size_t score = 0;
+	for (size_t i = 0; i < g.nb_capteurs; i++)
+	{
+		if (test[i]) {
+			score += g.cout_capteur[i];
+		}
+	}
+	cout << score << endl;
+	size_t indice = 0;
+	vector <GUERRIER> population(POP_SIZE);
+
+	Genetique arene = Genetique();
+	arene.parseFichier(filename);
+	arene.start(filename);
+	/*
+	typedef std::chrono::high_resolution_clock Time;
+	typedef std::chrono::milliseconds ms;
+	typedef std::chrono::duration<float> fsec;*/
+
+	//auto t0 = Time::now();	
+	//std::cout << "Resultat : " << g.glotona() << endl;
+
+	
+	/*auto t1 = Time::now();
+
+	fsec fs = t1 - t0;
+	ms d = std::chrono::duration_cast<ms>(fs);
+	std::cout << fs.count() << "s\n";
+	std::cout << d.count() << "ms\n";	
+
+	//std::cout << "Resultat : " << resultat << endl;
+	*/
+	return 0;
+
+}

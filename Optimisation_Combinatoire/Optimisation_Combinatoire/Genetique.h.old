@@ -1,0 +1,47 @@
+#pragma once
+
+#include "Glouton.h"
+
+#include <vector>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <tuple>
+ 
+#define POP_SIZE 20 // Penser à regarder la formule adaptée à la taille de la population pour les mutations.
+#define PRESSION_EVOL 700 // 70% pour l'évolution.
+#define NB_GENERATION 50 // TODO: Voir un nombre adapté.
+
+typedef bool* GUERRIER; 
+typedef size_t scoreG;
+
+using namespace std;
+
+class Genetique
+{
+public:
+	Genetique();
+	void parseFichier(string filename);	
+	void start(string filename);
+	
+	~Genetique();
+
+private:
+	size_t nb_capteurs, nb_cibles;
+	size_t* g_cout_capteur;
+	vector <size_t>* cibles, * capteurs;
+
+	size_t taille_population = POP_SIZE;
+	vector<GUERRIER> population;
+	scoreG* puissance;
+	size_t proba_mutation;
+	tuple <scoreG, GUERRIER> batman; // Meilleur guerrier de tous les temps.
+
+	void initPopulation(Glouton *armee);
+	void nextPopulation();
+	tuple<GUERRIER, GUERRIER> croisement_mutation(tuple<GUERRIER, GUERRIER> elus);	
+	void el_reparator(GUERRIER* G);
+	size_t calculScore(GUERRIER G);
+	size_t compareCombattants(size_t combattant1, size_t combattant2);
+	void trouverBatman();
+};
