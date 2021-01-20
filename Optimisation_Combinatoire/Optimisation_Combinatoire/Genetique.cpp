@@ -92,7 +92,7 @@ void Genetique::parseFichier(string filename, string chemin_sortie)
             indice++;
         }
     }
-    proba_mutation = 2;// TODO: Tester cette valeur pour en être sûr et certain.
+    proba_mutation = 2;
     puissance = new scoreG[taille_population]; // Le tableau qui contient le score de chaque guerrier. Vide pour le moment.   
 }
 
@@ -195,7 +195,7 @@ void Genetique::nextPopulation()
             
         
         //réparation
-        //el bug is here
+     
         //cout << calculScore(get<0>(elus)) << " " << calculScore(get<1>(elus)) << endl;
         get<0>(elus) = el_reparator(get<0>(elus));
         get<1>(elus) = el_reparator(get<1>(elus));
@@ -207,7 +207,7 @@ void Genetique::nextPopulation()
 
         //cout << endl;
     }
-    // TODO: Voir ici au niveau de la mémoire.
+   
     population = newPopulation; 
 }
 
